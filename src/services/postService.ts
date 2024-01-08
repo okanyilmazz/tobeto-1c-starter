@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { Post } from "../models/post";
 
 class PostService {
-    getAll() {
-        return axios.get("https://jsonplaceholder.typicode.com/posts")
+    getAll(): Promise<AxiosResponse<Post[], any>> {
+        return axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")
     }
 }
 

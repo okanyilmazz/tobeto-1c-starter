@@ -7,13 +7,14 @@ import NotFound from './pages/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login/login';
+import { Post } from './models/post';
 
 function App() {
 
   //backend bağlantısı http isteği
   //bağlantı sonucu gelen değeri ekranda göstermek
   //component arası veri iletişimi
-  const [posts, setPosts] = useState<any>([])
+  const [posts, setPosts] = useState<Post[]>([])
   useEffect(() => {
     fetchItems();
   }, [])
