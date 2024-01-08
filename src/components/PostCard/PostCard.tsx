@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card } from 'semantic-ui-react'
 
-export default function PostCard(props) {
+export default function PostCard(props: any) {
     return (
         <Card>
             <Card.Content>

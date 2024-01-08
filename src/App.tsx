@@ -13,7 +13,7 @@ function App() {
   //backend bağlantısı http isteği
   //bağlantı sonucu gelen değeri ekranda göstermek
   //component arası veri iletişimi
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<any>([])
   useEffect(() => {
     fetchItems();
   }, [])
@@ -30,8 +30,8 @@ function App() {
       console.log(e)
     }
   }
-  const removePost = (id) => {
-    setPosts(posts.filter(i => i.id !== id))
+  const removePost = (id: any) => {
+    setPosts(posts.filter((i: any) => i.id !== id))
   }
   return (
     <>
