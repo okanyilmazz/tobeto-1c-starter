@@ -1,11 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import postService from "../../services/postService";
 
-export const getAllPosts = createAsyncThunk("post/getAllPosts", async () => {
-    const response = await postService.getAll();
-    return response.data;
-});
-
+export const getAllPosts = createAsyncThunk(
+    "post/getAllPosts",
+    async (thunkArg, thunkAPI) => {
+        console.log(thunkArg, thunkAPI)
+        const state: any = thunkAPI.getState();
+        if (state.post.posts.length > 0) {
+            return thunkAPI.fulfillWithValue(state.post.posts);
+        }
+        try {
+            const response = await postService.getAll();
+            return thunkAPI.fulfillWithValue(response.data);
+        } catch (e: any) {
+            return thunkAPI.rejectWithValue("Hata mesajı");
+        }
+    },
+);
 const postSlice = createSlice({
     name: "post",
     initialState: { loadingState: "initial", posts: [] as any[] },
